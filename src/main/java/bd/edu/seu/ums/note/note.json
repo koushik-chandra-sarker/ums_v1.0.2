@@ -1,0 +1,134 @@
+[
+  {
+    "username":"admin",
+    "password":"admin",
+    "email": "admin@gamil.com",
+    "active": true,
+    "roles": [
+      {
+        "role": "ADMIN"
+      }
+    ]
+  },
+  {
+    "name": "campus2",
+    "address": "address2"
+
+  },
+  {
+    "name": "school1",
+    "campusId": {
+      "id":1
+    }
+
+  },
+  {
+    "name": "School of Science",
+    "campus": {
+      "id": 1
+    }
+  },
+  {
+    "code": "CSE",
+    "title": "Computer Science and Engineering",
+    "label": "Engineering",
+    "length": 4,
+    "school": {
+      "id": 16
+    }
+  },
+  {
+    "code": "CSE1011",
+    "title": "Programming language I C",
+    "credit": 3
+  },
+  {
+    "firstName": "FName2",
+    "middleName": "MName2",
+    "lastName": "lName2",
+    "initial": "FML8",
+    "title": "Engineer",
+    "birthday": "1985-05-02",
+    "gender": "MALE",
+    "joiningDate": "2015-02-25",
+    "officeRoom": "ar1010",
+    "emails": [
+      {
+        "email": "email1@gmail.com",
+        "emailType": "WORK"
+      }
+    ],
+    "phones": [
+      {
+        "phoneNo": "01611111116"
+      },
+      {
+        "phoneNo": "01911111116"
+      }
+    ],
+    "addresses": [
+      {
+        "addressType":"PRESENT",
+        "streetAddress": "streetAddress1"
+      }
+
+    ],
+    "programme": {
+      "code": "cse"
+    }
+  },
+  {
+    "firstName": "StudentFName1",
+    "middleName": "StudentMName1",
+    "lastName": "StudentLName1",
+    "title": "Engineer",
+    "birthday": "1985-05-02",
+    "gender": "MALE",
+    "yearEnrolled": 2020,
+    "bloodGroup": "B+",
+    "emails": [
+      {
+        "email": "email1@gmail.com",
+        "emailType": "WORK"
+      }
+    ],
+    "phones": [
+      {
+        "phoneNo": "01611111116"
+      },
+      {
+        "phoneNo": "01911111116"
+      }
+    ],
+    "addresses": [
+      {
+        "addressType":"PRESENT",
+        "streetAddress": "streetAddress1"
+      }
+
+    ],
+    "programme": {
+      "code": "cse"
+    }
+  },
+  {
+    "yearTaken": 2020,
+    "semesterTaken": "spring",
+    "student": {
+      "id": 43
+    },
+    "courses": {
+      "ssn": "25cse1011"
+    }
+  },
+  {
+    "lecturer_course": {
+      "lecturer": {
+        "id": 25
+      },
+      "course": {
+        "code": "cse1011"
+      }
+    }
+  }
+]
