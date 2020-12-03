@@ -19,7 +19,7 @@ public class Role {
     private int roleId;
     private String role;
 
-    @ManyToMany(cascade = {CascadeType.REMOVE,CascadeType.PERSIST},fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.REFRESH,CascadeType.PERSIST,CascadeType.MERGE},fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
     @JoinTable(name = "role_permission",
             joinColumns = @JoinColumn(name = "role_id"),

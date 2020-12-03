@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -25,7 +26,7 @@ public class Faculty {
     private String middleName;
     private String lastName;
     @Column(unique = true,nullable = false)
-    @NotNull(message = "ojisjd")
+    @NotNull
     private String initial;
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -56,20 +57,31 @@ public class Faculty {
     private List<Education> educations;
 
     @ManyToOne
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "code")
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonProperty("programmeCode")
     private Programme programme;
 
     @ManyToOne
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     private Faculty supervisor;
 
     @OneToMany(mappedBy = "supervisor", cascade = CascadeType.PERSIST)
 //    @JoinColumn(name = "supervisor")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     private List<Faculty> faculty = new ArrayList<>();
 
-    @OneToMany(mappedBy = "faculty",cascade = CascadeType.ALL)
-    private List<Lecturer_Course> lecturer_courses = new ArrayList<>();
-
-
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
+    @JsonIgnore
     private User user;
+
+
+
+    @OneToMany(mappedBy = "faculty",cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private Collection<OfferedCourse> offeredCourse;
+
 
 }

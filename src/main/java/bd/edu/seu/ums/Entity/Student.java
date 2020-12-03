@@ -75,6 +75,9 @@ public class Student {
 
 
     @ManyToOne
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "code")
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonProperty("programmeCode")
     private Programme programme;
 
 /*
@@ -83,6 +86,7 @@ public class Student {
     private List<Course_Student> Reg_courses = new ArrayList<>();
 */
     @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
+    @JsonIgnore
     private User user;
 
 

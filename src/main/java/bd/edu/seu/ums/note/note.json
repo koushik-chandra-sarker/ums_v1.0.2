@@ -40,7 +40,23 @@
   {
     "code": "CSE1011",
     "title": "Programming language I C",
-    "credit": 3
+    "credit": 3,
+    "programme": {
+      "code": "cse"
+    }
+  },
+  {
+    "course": {
+      "code": "CSE1021"
+    },
+    "semester": {
+      "id": "Spring-cse"
+    },
+    "year": 2020,
+    "faculty": {
+      "id": "2020800020"
+    },
+    "studentLimit": 30
   },
   {
     "firstName": "FName2",

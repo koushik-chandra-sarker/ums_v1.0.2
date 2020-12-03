@@ -38,8 +38,7 @@ public class FacultyController {
     //Insert
     @PostMapping
     public String addFaculty(@RequestBody Faculty faculty){
-//        IdGenerator idGenerator = new IdGenerator();
-        List<Faculty> faculties = facultyService.getAllFaculty();
+       /* List<Faculty> faculties = facultyService.getAllFaculty();
         long t = faculties.stream().filter(faculty1 -> faculty1.getInitial().equals(faculty.getInitial())).count();
         if (t>0){
             throw new MyMadeException("Initial Already Exists.. Initial Must be Unique");
@@ -52,40 +51,10 @@ public class FacultyController {
 
         }else {
             idGenerator.replaceSequence(id);
-        }
-        return f;
+        }*/
+        return facultyService.addFaculty(faculty);
     }
 
-//    @RequestMapping(method = RequestMethod.GET, value = "/lecturers/createUser/{id}")
-//    public String createUser(@PathVariable long id) {
-//        Optional<Faculty> Faculty = facultyService.getFaculty(id);
-//        Faculty lec = null;
-//        if (lecturer.isPresent()) {
-//            lec = lecturer.get();
-//        }
-//
-//        String lid = String.valueOf(lec.getId());
-//        String lfname = lec.getFirstName();
-//
-//        User user = userService.getUserByUsername(lfname+lid);
-//        if (user != null ){
-//            return "User Already Exists.";
-//        }else {
-//            User u = new User();
-//            u.setUsername(lfname + lid);
-//            u.setPassword(passwordEncoder.encode(lfname + lid));
-//            u.setLecturer(lec);
-//            u.setActive(true);
-//            u.setEmail(lec.getEmail());
-//            Role r = new Role();
-//            r.setRole("LECTURER");
-//            List<Role> role = new ArrayList<>();
-//            role.add(r);
-//            u.setRoles(role);
-//            userService.addUser(u);
-//            return "User Created Successful";
-//        }
-//    }
 
     //Update
     @PutMapping

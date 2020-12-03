@@ -23,7 +23,23 @@ public class IdGenerator {
     private IdSeqService idSeqService;
 
     int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+    public String SuperuserIdGenerator(){
+        long id =0;
+        IdSeq idSeq = idSeqRepository.findByYearAndType(currentYear, "SUPERUSER");
+        if (idSeq!=null){
+            id = Long.parseLong(idSeq.getSequence());
+            id += 1;
+            idSeq.setSequence(String.valueOf(id));
+            idSeqRepository.save(idSeq);
+        }else {
+            String stringID = String.valueOf(currentYear).concat("9").concat("00001");
+            IdSeq idSeq1 = new IdSeq("SUPERUSER",currentYear,9,stringID);
+            idSeqRepository.save(idSeq1);
+            return stringID;
+        }
 
+        return String.valueOf(id);
+    }
     public String FacultyIdGenerator(){
 
         long id =0;

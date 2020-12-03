@@ -78,7 +78,7 @@ public class StudentService {
         boolean f = false;
         try {
             studentRepository.save(student);
-//            f = userService.createUser(id, id, "STUDENT");
+            f= true;
         }catch(Exception e){
             idGenerator.replaceSequence(id);
             return e.toString();

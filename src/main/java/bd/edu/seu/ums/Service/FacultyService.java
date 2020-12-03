@@ -1,6 +1,9 @@
 package bd.edu.seu.ums.Service;
 
 import bd.edu.seu.ums.Entity.Faculty;
+import bd.edu.seu.ums.Entity.User;
+import bd.edu.seu.ums.Exception.MyMadeException;
+import bd.edu.seu.ums.Helper.IdGenerator;
 import bd.edu.seu.ums.Repository.FacultyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +17,11 @@ public class FacultyService {
 
     @Autowired
     private FacultyRepository facultyRepository;
+    @Autowired
+    private IdGenerator idGenerator;
+
+    @Autowired
+    UserService userService;
 //    @Autowired
 //    private roleRepository roleRepository;
 //
@@ -30,49 +38,45 @@ public class FacultyService {
     }
 
     public String addFaculty(Faculty faculty) {
-
+        List<Faculty> faculties = this.getAllFaculty();
+        long t = faculties.stream().filter(faculty1 -> faculty1.getInitial().equals(faculty.getInitial())).count();
+        if (t>0){
+            throw new MyMadeException("Initial Already Exists.. Initial Must be Unique");
+        }
+        String id = idGenerator.FacultyIdGenerator();
+        User user = userService.createUserObject(id, "FACULTY");
+        faculty.setId(id);
+        faculty.setUser(user);
         boolean f = false;
         try {
             facultyRepository.save(faculty);
-            f = true;
-        } catch (Exception e) {
-           return e.getMessage();
+            f= true;
+        }catch(Exception e){
+            idGenerator.replaceSequence(id);
+            return e.toString();
         }
+
         return String.valueOf(f);
     }
 
-    /*public boolean createFacultyUser(String username,String password,String role) {
-        boolean f = false;
-        Role role2 = roleRepository.findByRole(role);
-        List<Role> roles = new ArrayList<>();
-        if (role == null){
-            roleRepository.save(new Role("FACULTY"));
-            Role role1 = roleRepository.findByRole("FACULTY");
-            roles.add(role1);
-            User user = new User(username, password, true, roles);
-            try {
-                userRepository.save(user);
-                f=true;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    public void updateFaculty(Faculty faculty) throws MyMadeException {
+        String id;
+        String username;
+        Optional<Faculty> faculty1 = null;
+        try {
+            id = faculty.getId();
+            faculty1 = this.getFaculty(id);
+        }catch (NullPointerException e){
+            throw new MyMadeException("You must have to given id.");
         }
-        else {
-            roles.add(role2);
-            User user = new User(username, username, true, roles);
-            try {
-                userRepository.save(user);
-                f=true;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        faculty.setUser(faculty1.get().getUser());
+        try {
+            facultyRepository.save(faculty);
+        }
+        catch (Exception e){
+            throw new MyMadeException(e.getLocalizedMessage());
         }
 
-        return f;
-    }*/
-
-    public void updateFaculty(Faculty faculty) {
-        facultyRepository.save(faculty);
     }
 
     public void deleteFaculty(String id) {

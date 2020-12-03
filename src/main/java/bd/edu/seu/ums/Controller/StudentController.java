@@ -49,10 +49,7 @@ public class StudentController {
     //Insert
     @PostMapping
     public String addStudent(@RequestBody Student student) {
-
         return studentService.addStudent(student);
-
-
     }
 
     //Update

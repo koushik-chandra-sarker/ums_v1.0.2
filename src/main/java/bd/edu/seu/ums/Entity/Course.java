@@ -16,15 +16,15 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-/*@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "code")*/
-@JsonPropertyOrder({ "code", "title", "credit", "programme", "pre_course","lecturer_courses" })
+@JsonPropertyOrder({ "code", "title", "credit","minCredit","type","prototype", "pre_course_code", "programme","lecturer_courses" })
 public class Course implements Serializable {
     @Id
-    private String Code;
+    private String code;
     private String title;
     private int credit;
+    private int minCredit;
+    private String type;
+    private String prototype;
 
     @ManyToMany
     @JoinTable(
@@ -50,7 +50,15 @@ public class Course implements Serializable {
     private List<Course> courses;
 
     @ManyToOne
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "code")
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonProperty("programmeCode")
     private Programme programme;
+
+    @OneToOne
+    private Course alternateCourse;
 
 
 

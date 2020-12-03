@@ -14,7 +14,7 @@ public class Email {
     @Id
     @GeneratedValue
     private int id;
-    @Column(nullable = false)
+    @Column(unique = true)
     private String email;
     private String emailType;
 }

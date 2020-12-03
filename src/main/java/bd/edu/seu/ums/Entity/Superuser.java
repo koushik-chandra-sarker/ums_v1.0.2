@@ -17,7 +17,7 @@ import java.util.List;
 public class Superuser {
 
     @Id
-    private long id;
+    private String id;
     private String firstName;
     private String middleName;
     private String lastName;
