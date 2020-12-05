@@ -20,6 +20,8 @@ public class School {
     private int id;
     private String name;
 
+
+    //parent
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.DETACH)
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
@@ -27,6 +29,7 @@ public class School {
     private Campus campus;
 
 
+    //child
     @OneToMany(mappedBy = "school", cascade = CascadeType.PERSIST)
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "code")
     @JsonIdentityReference(alwaysAsId = true)

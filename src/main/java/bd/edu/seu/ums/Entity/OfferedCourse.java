@@ -9,12 +9,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 //@IdClass(OfferedCourseId.class)
 public class OfferedCourse {
 
@@ -41,5 +42,8 @@ public class OfferedCourse {
     @JoinColumn(nullable = false)
     private Faculty faculty;
 
+    @NotNull
     private int studentLimit;
+    private int availableLimit;
+
 }

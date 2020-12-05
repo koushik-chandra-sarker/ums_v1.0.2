@@ -16,17 +16,14 @@ import java.time.Year;
 @NoArgsConstructor
 @AllArgsConstructor
 @Embeddable
-public class OfferedCourseId implements Serializable {
-
+public class PreAdvisedCourseId implements Serializable {
     @ManyToOne
     @NotNull
     private Course course = new Course();
     @ManyToOne
     @NotNull
-    private Semester semester;
+    private Semester semester = new Semester();
     @Column(nullable = false)
     private int year = Year.now().getValue();
-    @Column(columnDefinition = "integer default 1")
-    private int section = 1;
 
 }

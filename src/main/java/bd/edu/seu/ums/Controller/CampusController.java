@@ -1,6 +1,7 @@
 package bd.edu.seu.ums.Controller;
 
 import bd.edu.seu.ums.Entity.Campus;
+import bd.edu.seu.ums.Entity.School;
 import bd.edu.seu.ums.Repository.SchoolRepository;
 import bd.edu.seu.ums.Service.CampusService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +45,13 @@ public class CampusController {
     @DeleteMapping(value = "{id}")
     public void deleteCampus(@PathVariable int id) {
 
-        int isSetNUll = schoolRepository.setCampusNull(id);
-        if (isSetNUll==1) campusService.deleteCampus(id);
+        List<School> school = schoolRepository.findByCampus_Id(id);
+        if (school.isEmpty()){
+            campusService.deleteCampus(id);
+        }else {
+            int isSetNUll = schoolRepository.setCampusNull(id);
+            if (isSetNUll == 1) campusService.deleteCampus(id);
+        }
 
     }
 }

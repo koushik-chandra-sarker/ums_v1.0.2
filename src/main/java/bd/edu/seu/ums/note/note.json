@@ -1,5 +1,23 @@
 [
+
   {
+    "_comment": "student_course",
+    "id": {
+      "course": {
+        "code": "CSE1021"
+      },
+      "semester": {
+        "id": "Spring-cse"
+      },
+      "year": 2020
+    },
+    "student": {
+      "id": "2020100000039"
+    }
+  },
+
+  {
+    "_comment": "user",
     "username":"admin",
     "password":"admin",
     "email": "admin@gamil.com",
@@ -11,11 +29,13 @@
     ]
   },
   {
+    "_comment": "campus",
     "name": "campus2",
     "address": "address2"
 
   },
   {
+    "_comment": "school",
     "name": "school1",
     "campusId": {
       "id":1
@@ -23,12 +43,7 @@
 
   },
   {
-    "name": "School of Science",
-    "campus": {
-      "id": 1
-    }
-  },
-  {
+    "_comment": "programme",
     "code": "CSE",
     "title": "Computer Science and Engineering",
     "label": "Engineering",

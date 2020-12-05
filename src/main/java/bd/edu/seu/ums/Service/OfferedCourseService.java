@@ -56,7 +56,13 @@ public class OfferedCourseService {
         }catch (NullPointerException e){
             throw new MyMadeException("You must have to add faculty.id");
         }
+        try {
+             offeredCourse.setAvailableLimit(offeredCourse.getStudentLimit()); // setting AvailableLimit by studentLimit
+        }catch (NullPointerException e){
+            throw new MyMadeException("You must have to add studentLimit");
+        }
 
+        //section auto generated start
         if (offeredCourse.getId().getSection()==1){
             OfferedCourse offeredCourse1 = offeredCourseRepository.findByCourseAndSemesterAndYear(
                     offeredCourse.getId().getCourse().getCode(),
@@ -74,7 +80,7 @@ public class OfferedCourseService {
         }else {
             throw new MyMadeException("Please Delete id.section... it will auto generated");
         }
-
+        //section auto generated end
 
 
     }

@@ -15,24 +15,29 @@ public class Programme {
     @Id
     private String code;
     private String title;
-    private String label;
-    private int length;
+    private String label; //ex. Engineering
+    private int length; // year
 
+
+    //parent
     @ManyToOne
     private School school;
 
+    //child
     @OneToMany(mappedBy = "programme",fetch = FetchType.EAGER)
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
     @JsonProperty("facultyIds")
     private List<Faculty> faculties = new ArrayList<>();
 
-    @OneToMany(mappedBy = "programme", cascade = CascadeType.ALL)
+    //child
+    @OneToMany(mappedBy = "programme")
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
     @JsonProperty("studentIds")
     private List<Student> students = new ArrayList<>();
 
+    //child
     @OneToMany(cascade = CascadeType.PERSIST,mappedBy = "programme" )
     private List<Course> courses = new ArrayList<>();
 
