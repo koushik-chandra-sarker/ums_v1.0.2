@@ -25,7 +25,7 @@ public class StudentCourseController {
         return service.getStudentCourse(id);
     }
 
-    @PostMapping
+    @PostMapping("/advising")
     public void addStudentCourse(@RequestBody StudentCourse studentCourse) {
         service.addStudentCourse(studentCourse);
     }

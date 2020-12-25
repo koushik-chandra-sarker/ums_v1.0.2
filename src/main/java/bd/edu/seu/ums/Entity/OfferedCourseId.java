@@ -19,10 +19,8 @@ import java.time.Year;
 public class OfferedCourseId implements Serializable {
 
     @ManyToOne
-    @NotNull
     private Course course = new Course();
     @ManyToOne
-    @NotNull
     private Semester semester;
     @Column(nullable = false)
     private int year = Year.now().getValue();

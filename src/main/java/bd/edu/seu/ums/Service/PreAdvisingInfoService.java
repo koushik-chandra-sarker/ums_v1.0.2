@@ -1,11 +1,8 @@
 package bd.edu.seu.ums.Service;
 
-import bd.edu.seu.ums.Entity.Course;
-import bd.edu.seu.ums.Entity.PreAdvisedCourse;
-import bd.edu.seu.ums.Entity.PreAdvisedCourseId;
+
 import bd.edu.seu.ums.Entity.PreAdvisingInfo;
 import bd.edu.seu.ums.Exception.MyMadeException;
-import bd.edu.seu.ums.Repository.PreAdvisedCourseRepository;
 import bd.edu.seu.ums.Repository.PreAdvisingInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,9 +25,9 @@ public class PreAdvisingInfoService {
         return repository.findById(id);
     }
 
-    public void addPreAdvisingInfo(PreAdvisingInfo PreAdvisingInfo) {
+    public void addPreAdvisingInfo(PreAdvisingInfo preAdvisingInfo) {
         try {
-            repository.save(PreAdvisingInfo);
+            repository.save(preAdvisingInfo);
         } catch (Exception e) {
             throw new MyMadeException(e.getMessage());
         }

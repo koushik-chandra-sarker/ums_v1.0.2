@@ -17,6 +17,8 @@ public interface PreAdvisedCourseRepository extends JpaRepository<PreAdvisedCour
     List<PreAdvisedCourse> findAllByStudentId(String student_id);
 
     @Query(value = "select * from pre_advised_course  where course_code =? and semester_id =? and year =? and student_id=?",nativeQuery = true)
-    Optional<PreAdvisedCourse> findByCourseCodeAndSemIdAndYearAndStudentId(String course_code, String semester_id, int year, String student_id);
+    Optional<PreAdvisedCourse> findByCourseCodeAndSemesterIdAndYearAndStudentId(String course_code, String semester_id, int year, String student_id);
 
+    @Query(value = "select COALESCE(SUM(pac.credit),0)  from pre_advised_course pac where pac.semester_id =? and pac.year =? and pac.student_id =?",nativeQuery = true)
+    Integer totalCreditBySemester_IdAndYearAndStudent_Id(String semester_id, int year,String student_id);
 }

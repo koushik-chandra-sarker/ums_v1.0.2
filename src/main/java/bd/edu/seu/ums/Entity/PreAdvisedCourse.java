@@ -19,7 +19,7 @@ public class PreAdvisedCourse {
 
     @EmbeddedId private PreAdvisedCourseId id; //course-code, semester_id, year
 
-    private int credit;
+    private int credit; // set by Service
 
     @ManyToOne
     @JoinColumn

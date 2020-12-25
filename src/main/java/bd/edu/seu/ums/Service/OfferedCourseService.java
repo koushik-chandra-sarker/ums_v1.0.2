@@ -72,9 +72,18 @@ public class OfferedCourseService {
             if (offeredCourse1!=null){
                 int section = offeredCourse1.getId().getSection();
                 offeredCourse.getId().setSection(section+1);
-                offeredCourseRepository.save(offeredCourse);
+                try {
+                    offeredCourseRepository.save(offeredCourse);
+                }catch (Exception e){
+                    throw new MyMadeException(e.getMessage());
+                }
             }else {
-                offeredCourseRepository.save(offeredCourse);
+                try {
+                    offeredCourseRepository.save(offeredCourse);
+                }catch (Exception e){
+                    throw new MyMadeException(e.getMessage());
+                }
+
             }
 
         }else {

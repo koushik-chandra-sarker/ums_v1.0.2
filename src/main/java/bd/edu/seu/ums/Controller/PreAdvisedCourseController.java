@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("management/api/v1/pre_advised_course")
+@RequestMapping("management/api/v1/pre_advising")
 public class PreAdvisedCourseController {
     @Autowired
     private PreAdvisedCourseService service;

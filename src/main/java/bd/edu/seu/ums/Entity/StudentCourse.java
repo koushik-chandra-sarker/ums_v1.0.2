@@ -1,12 +1,16 @@
 package bd.edu.seu.ums.Entity;
 
+import bd.edu.seu.ums.Enum.StudentCourseStatus;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 
 @Entity(name = "student_course")
 @Data
@@ -20,6 +24,9 @@ public class StudentCourse {
 
     @ManyToOne
     @NotNull
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonProperty("studentId")
     private Student student;
 
     @ManyToOne
@@ -28,6 +35,8 @@ public class StudentCourse {
 
     private double gradeAward = 0.00;
     private String gradeLatter;
-    private String status;
+
+    @Enumerated(EnumType.STRING)
+    private StudentCourseStatus status; //COMPLETE,RUNNING,FAILED,INCOMPLETE
 
 }

@@ -53,7 +53,7 @@ public class FacultyService {
             f= true;
         }catch(Exception e){
             idGenerator.replaceSequence(id);
-            return e.toString();
+            throw new MyMadeException(e.getMessage());
         }
 
         return String.valueOf(f);

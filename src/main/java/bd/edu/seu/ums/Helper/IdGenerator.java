@@ -1,26 +1,19 @@
 package bd.edu.seu.ums.Helper;
 
-import bd.edu.seu.ums.Entity.Campus;
 import bd.edu.seu.ums.Entity.IdSeq;
 import bd.edu.seu.ums.Repository.CampusRepository;
 import bd.edu.seu.ums.Repository.IdSeqRepository;
 import bd.edu.seu.ums.Service.IdSeqService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
-import java.util.Optional;
 
 @Service
 public class IdGenerator {
 
     @Autowired
     private IdSeqRepository idSeqRepository;
-    @Autowired
-    private CampusRepository campusRepository;
-    @Autowired
-    private IdSeqService idSeqService;
 
     int currentYear = Calendar.getInstance().get(Calendar.YEAR);
     public String SuperuserIdGenerator(){

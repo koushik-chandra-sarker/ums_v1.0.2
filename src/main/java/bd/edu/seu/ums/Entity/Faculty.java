@@ -34,10 +34,10 @@ public class Faculty {
     private List<Email> emails;
 
     private String title;
-    private LocalDate birthDate;
+    private LocalDate birthDate; // YYYY-MM-DD
     @Enumerated(EnumType.STRING)
-    private Gender gender;
-    private LocalDate joiningDate;
+    private Gender gender;  // MALE or FEMALE or OTHER
+    private LocalDate joiningDate; // YYYY-MM-DD
     private String officeRoom;
     private String bloodGroup;
     private String maritalStatus;
@@ -59,7 +59,7 @@ public class Faculty {
     @ManyToOne
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "code")
     @JsonIdentityReference(alwaysAsId = true)
-    @JsonProperty("programmeCode")
+    @JsonProperty("programmeCodes")
     private Programme programme;
 
     @ManyToOne

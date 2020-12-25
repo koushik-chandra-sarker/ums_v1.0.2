@@ -1,5 +1,7 @@
 package bd.edu.seu.ums.Entity;
 
+import bd.edu.seu.ums.Exception.MyMadeException;
+import bd.edu.seu.ums.Helper.TimeConverter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
 import java.sql.Time;
+import java.text.ParseException;
 
 @Entity
 @Data
@@ -16,6 +19,7 @@ import java.sql.Time;
 public class AdvisingInfo {
 
     @Id
+    @GeneratedValue
     private int ssn;
 
     @Column(nullable = false)
@@ -55,4 +59,20 @@ public class AdvisingInfo {
     @Column(unique = true,nullable = false)
     private boolean running = false;
 
+    public void setStartTime(String startTime) {
+
+        try {
+            this.startTime = Time.valueOf(TimeConverter.convert24h(startTime));
+        } catch (ParseException e) {
+            throw new MyMadeException(e.getMessage());
+        }
+    }
+
+    public void setEndTime(String endTime) {
+        try {
+            this.endTime = Time.valueOf(TimeConverter.convert24h(endTime));
+        } catch (ParseException e) {
+            throw new MyMadeException(e.getMessage());
+        }
+    }
 }

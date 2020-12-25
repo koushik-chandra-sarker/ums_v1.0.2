@@ -19,23 +19,23 @@ public class SemesterController {
 
 
     @GetMapping
-    public List<Semester> getAllCampus() {
+    public List<Semester> getAll() {
         return semesterService.getAllSemester();
     }
 
     @GetMapping("{id}")
-    public Optional<Semester> getCampus(@PathVariable String id) {
+    public Optional<Semester> get(@PathVariable String id) {
         return semesterService.getSemester(id);
 
     }
 
     @PostMapping
-    public void addCampus(@RequestBody Semester semester) {
+    public void add(@RequestBody Semester semester) {
         semesterService.addSemester(semester);
     }
 
     @PutMapping
-    public void updateCampus(@RequestBody Semester semester) {
+    public void update(@RequestBody Semester semester) {
         semesterService.updateSemester(semester);
     }
 

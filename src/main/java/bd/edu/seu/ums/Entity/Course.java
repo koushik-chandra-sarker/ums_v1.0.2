@@ -40,6 +40,8 @@ public class Course implements Serializable {
     private List<Course> pre_course;
 
 
+
+    //JsonIgnore
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
             name = "pre_course",

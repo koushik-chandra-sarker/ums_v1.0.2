@@ -54,7 +54,7 @@ public class Student {
 
 //    @Enumerated(EnumType.STRING) // REGULAR,WEEKEND
 //    private StudentType type;
-    private String type;
+    private String type; // Type must be REGULAR or WEEKEND. it managed by StudentService
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "student_id")
     private List<Address> addresses;
@@ -80,11 +80,7 @@ public class Student {
     @JsonProperty("programmeCode")
     private Programme programme;
 
-/*
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<Course_Student> Reg_courses = new ArrayList<>();
-*/
+
     @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
     @JsonIgnore
     private User user;
